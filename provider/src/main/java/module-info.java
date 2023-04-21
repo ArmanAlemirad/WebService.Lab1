@@ -1,9 +1,10 @@
-import org.example.provider.EnglishGreeting;
-import org.example.provider.SwedishGreetings;
-import org.example.service.Greeting;
+import org.example.provider.EuroToSekConverter;
+import org.example.provider.SekToEuroConverter;
+import org.example.service.CurrencyConverter;
 
 module org.example.provider {
     requires org.example.service;
-    provides Greeting with SwedishGreetings, EnglishGreeting;
+    opens org.example.provider;
+    provides CurrencyConverter with EuroToSekConverter, SekToEuroConverter;
 
 }

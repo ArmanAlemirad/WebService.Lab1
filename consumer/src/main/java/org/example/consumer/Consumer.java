@@ -1,23 +1,22 @@
 package org.example.consumer;
 
 
+import org.example.service.CurrencyConverter;
 
-
-
-import org.example.service.Greeting;
-
+import java.util.Scanner;
 import java.util.ServiceLoader;
 
 public class Consumer {
 
     public static void main(String[] args) {
+        ServiceLoader<CurrencyConverter> converters = ServiceLoader.load(CurrencyConverter.class);
 
-        //Find all implementations of Greeting...
-        ServiceLoader<Greeting> greetings = ServiceLoader.load(Greeting.class);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter amount to convert:");
 
-        for (var greeting : greetings){
-            System.out.println(greeting.sayHello());
+        double amount = scanner.nextDouble();
+        for (CurrencyConverter converter : converters) {
+            System.out.println(converter.convert(amount));
         }
-
     }
 }
